@@ -1,7 +1,6 @@
-import Accordion from "./ui/accordion";
+
 import Logo from "../public/images/svgs/Logo";
 import React, { Dispatch } from "react"
-import { BooleanLiteral } from "typescript";
 
 
 export type NavbarProps = {
