@@ -1,5 +1,3 @@
-
-
 import {
   Carousel,
   CarouselContent,
@@ -7,9 +5,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect } from "react";
-import { EmblaCarouselType } from "embla-carousel";
 
 export default function CreateCarousel({
   nameIDS,

@@ -1,8 +1,8 @@
 import { getDocs, getDoc, collection, doc } from "firebase/firestore";
 import { database, storage } from "@/app/firebase.config";
 import GenerateWatchesTable from "../../../components/products/watchesComponents/generateWatchesTable";
-import { tableDataType } from "../../../components/products/watchesComponents/generateWatchesTable";
-import WatchesImageTableComponent from "../../../components/products/watchesComponents/genericImageTableComponent";
+import { WatchDataType } from "../../../components/products/watchesComponents/generateWatchesTable";
+import GenericImageTableComponent from "../../../components/products/watchesComponents/genericImageTableComponent";
 import {
   getStorage,
   ref,
@@ -10,14 +10,14 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-const collectionType = "watches";
+const collectionType = "airpods";
 
 export type genericImageUrlsType = {
   [key :string] : string
 };
 
-async function getWatches() {
-  const collectionRef = collection(database, "watches");
+async function getAirpods() {
+  const collectionRef = collection(database, "airpods");
   const data = await getDocs(collectionRef).then((response) =>
   response.docs.map((data) => [data.id, data.data()])
   );
@@ -35,10 +35,10 @@ async function getImages() {
    
 }
 
-export default async function Watches() {
-  let DATA: tableDataType[] = (await getWatches()).map((data) => data);
-  let watchImageUrls: genericImageUrlsType= await getImages();
-  console.log(watchImageUrls);
+export default async function Airpods() {
+  let DATA: genericImageUrlsType[] = (await getAirpods()).map((data) => data);
+  let airpodsImageUrls: airpodsImageUrlsType = await getImages();
+  console.log(airpodsImageUrls);
 
   console.log(DATA);
   return (
@@ -46,10 +46,10 @@ export default async function Watches() {
       <div className="flex justify-center items-center">
         <div className="imagePriceComp"></div>
         <div className="w-[50rem]">
-          <WatchesImageTableComponent
+          <GenericImageTableComponent
             tableData={DATA}
-            imageObject={watchImageUrls}
-            collectionType="watches"
+            imageObject={airpodsImageUrls}
+            collectionType={collectionType}
           />
         </div>
       </div>

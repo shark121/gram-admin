@@ -4,6 +4,7 @@ import Image from "next/image";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 import { connectStorageEmulator } from "firebase/storage";
 import { navigationArrayType } from "./generatePhonePage";
+import { FileUploadDialog } from "@/components/ui/fileUploadDialog";
 
 export type ImagePriceComponentType = {
   navigation: navigationArrayType;
@@ -26,7 +27,7 @@ async function GetPrice({ itemId }: { itemId: string }) {
 export default async function ImagePriceComponent({
   nameID,
   navigation,
-  imageURL
+  imageURL,
 }: ImagePriceComponentType) {
   let currentPrice;
 
@@ -40,14 +41,24 @@ export default async function ImagePriceComponent({
   return (
     <div className="flex ">
       <div className="w-[50%] h-[10rem] relative">
-        <Image fill src={imageURL} alt="phone Image "  className="object-contain"/>
+        <Image
+          fill
+          src={imageURL}
+          alt="phone Image "
+          className="object-contain"
+        />
       </div>
       <div className="w-[50%] h-[10rem] flex items-center justify-center">
-        <ChangePrice
-          itemId={nameID}
-          currentPrice={currentPrice!}
-          navigation={navigation}
-        />
+        <div className="flex w-[10rem] h-full items-center justify-between">
+          <ChangePrice
+            itemId={nameID}
+            currentPrice={currentPrice!}
+            navigation={navigation}
+          />
+          <div  className="h-full w-full">
+            <FileUploadDialog collectionType="phones" nameID={nameID} />
+          </div>
+        </div>
       </div>
     </div>
   );

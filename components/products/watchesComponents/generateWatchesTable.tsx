@@ -10,14 +10,14 @@ import {
 } from "@/components/ui/table";
 import { Tab } from "@headlessui/react";
 
-export type WatchDataType = [nameID: string, { [key: string]: number }];
+export type tableDataType = [nameID: string, { [key: string]: number }];
 
-export default function GenerateWatchesTable({
+export default function GenerateGenericTable({
   data,
   setCurrentImage
 }: {
   setCurrentImage : React.Dispatch<React.SetStateAction<string>>;
-  data: WatchDataType[];
+  data: tableDataType[];
 }) {
     console.log(data);
   return (
@@ -25,7 +25,7 @@ export default function GenerateWatchesTable({
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead>Watch</TableHead>
+          <TableHead>Item</TableHead>
           <TableHead>Number</TableHead>
           <TableHead>Price</TableHead>
         </TableRow>

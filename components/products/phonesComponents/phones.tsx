@@ -36,12 +36,10 @@ export async function getPhoneDocuments() {
     doc(collection(database, "Collection"), "phones")
   ).then((response) => response.data());
 
-  for (let object of imageData?.objects) {
-    Object.assign(convertedObjects, { [object.name]: object.image });
-  }
+  
 
   for (let element of data) {
-    element[2] = convertedObjects[element[0]];
+    element[2] = imageData[element[0]]
   }
 
   return data;
