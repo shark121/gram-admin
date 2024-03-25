@@ -7,9 +7,10 @@ import { get } from "http";
 
 
  async function fileUploadFunc(buffer:Buffer, collectionType:string, nameID:string, fileType:string) {
-  const nameIDTrim = nameID.trim().replaceAll(" ", "_");
+  const nameIDTrim = nameID.trim();
+  console.log(nameIDTrim, fileType);
 
-  const storageRef = ref(storage,  `${nameIDTrim}.${fileType.trim()}`)
+  const storageRef = ref(storage,  `${nameIDTrim}.${fileType}`)
   const uploadTask = uploadBytesResumable(storageRef, buffer);
   uploadTask.on(
     "state_changed",
@@ -55,7 +56,7 @@ export async function POST(request: NextRequest, context:Context) {
   console.log(contextData);
   const data = await request.formData()
   const File : File = data.get("file") as File;
-  const getFileTypeStartIndex = File.type.indexOf(".") 
+  const getFileTypeStartIndex = File.type.indexOf("/") + 1; 
   const fileType = File.type.slice(getFileTypeStartIndex);
   const bytes = await File.arrayBuffer();
   const buffer = Buffer.from(bytes);

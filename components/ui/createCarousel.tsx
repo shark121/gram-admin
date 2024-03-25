@@ -16,7 +16,7 @@ export default function CreateCarousel({
 //   const [emblaRef, emblaApi] = useEmblaCarousel();
 
   return (
-    <div className="">
+    <div className="w-full">
       <Carousel>
         <CarouselContent>
           {nameIDS.map((name, index) => (

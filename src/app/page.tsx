@@ -8,20 +8,20 @@ const comfortaa = Comfortaa({
 });
 
 export default async function Home() {
-  let DATA =   await fetch(
-      "http://localhost:3000/api/getPrices/phones"
-    ).then(async (response) => {
-      let getData = await response.json();
-      return getData;
-    });
-  
+  const DATA = await fetch("http://localhost:3000/api/getPrices/phones")
+    .then((response) => response.json())
+    .then((data) => data.message)
+    .catch((error) => console.log(error));
+
   return (
-    <div className={` h-screen w-screen `}>
-      <div className="h-full w-full flex justify-center items-center">
+    <div className={` h-screen w-screen flex items-center justify-center `}>
+      <div className="h-[10rem] w-[10rem] flex flex-col justify-between items-center">
         <Link href="/phones">Phones</Link>
         <Link href="/watches">Watches</Link>
         <Link href="/airpods">Airpods</Link>
-      <SetStorage {...DATA} />
+        <Link href="/create">Create</Link>
+        <Link href="/orders">Orders</Link>
+        <SetStorage {...DATA} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import PhoneProducts from "../../../components/products/phonesComponents/phones";
+import PhoneProducts from "../phones/page";
 import Airpods from "../../../components/airpods/airpods";
 
 type ComponentMapType={

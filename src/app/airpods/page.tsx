@@ -1,8 +1,8 @@
 import { getDocs, getDoc, collection, doc } from "firebase/firestore";
 import { database, storage } from "@/app/firebase.config";
-import GenerateWatchesTable from "../../../components/products/watchesComponents/generateWatchesTable";
-import { WatchDataType } from "../../../components/products/watchesComponents/generateWatchesTable";
-import GenericImageTableComponent from "../../../components/products/watchesComponents/genericImageTableComponent";
+import GenerateWatchesTable from "../../../components/products/genericComponents/generateGenericTable";
+import { WatchDataType } from "../../../components/products/genericComponents/generateGenericTable";
+import GenericImageTableComponent from "../../../components/products/genericComponents/genericImageTableComponent";
 import {
   getStorage,
   ref,

@@ -8,9 +8,8 @@ export async function GET(params: { data: string[] }, request: NextRequest) {
   console.log("Params", params, request, "request");
 
   let priceData =  await getDocs(collectionRef).then((response) => {
-   return response.docs.map((data) => data.data()) 
+   return response.docs.map((data) => ({[data.id] : data.data()})) 
   });
- sessionStorage.setItem("pricesData", JSON.stringify(priceData));
   return NextResponse.json({message : priceData});
 }
  
