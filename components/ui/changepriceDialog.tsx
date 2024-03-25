@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {setDoc, collection, doc, updateDoc} from "firebase/firestore"
 import { database } from "@/app/firebase.config"
-import { navigationArrayType } from "./products/phonesComponents/generatePhonePage"
+import { navigationArrayType } from "../products/phonesComponents/generatePhonePage"
 import { useState, useRef, createRef } from "react"
 import { DialogClose } from "@radix-ui/react-dialog"
 

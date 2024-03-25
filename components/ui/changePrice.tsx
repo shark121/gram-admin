@@ -2,7 +2,7 @@ import {} from "firebase/firestore";
 import { database } from "@/app/firebase.config";
 import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 import { ChangePriceDialog } from "./changepriceDialog";
-import { navigationArrayType } from "./products/phonesComponents/generatePhonePage"
+import { navigationArrayType } from "../products/phonesComponents/generatePhonePage"
 
 export default function ChangePrice({
   itemId,

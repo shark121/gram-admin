@@ -1,5 +1,5 @@
 "use client";
-import { dataTuple } from "./phones";
+import { dataTuple } from "../../../src/app/phones/page";
 import Image from "next/image";
 import { useState } from "react";
 import Options from "../../ui/options";
