@@ -62,85 +62,86 @@ export default function CreateItem() {
       numberState,
       `${collection}/${nameID}/${storageState}/${colorState}`
     );
-    await updatePrice(priceState, `prices/${collection}/${nameID}/${storageState}`);
-     
+    await updatePrice(
+      priceState,
+      `prices/${collection}/${nameID}/${storageState}`
+    );
+
     window.location.reload();
   }
 
   return (
-      <div className="flex items-center justify-center p-4 min-h-screen">
-        <div className="w-[20rem] ">
-          <h1 className="font-bold flex justify-center items-center my-4">
-            Create Entry
-          </h1>
+    <div className="flex items-center justify-center p-4 min-h-screen">
+      <div className="w-[20rem] ">
+        <h1 className="font-bold flex justify-center items-center my-4">
+          Create Entry
+        </h1>
+        <DropDownMenu
+          collectionsData={collections}
+          setCurrentItemState={setCollectionState}
+          placeholder={collectionPlaceHolder}
+        />
+        <DropDownMenu
+          collectionsData={Object.keys(
+            collectionsMap[collectionState as keyof typeof collectionsMap]
+          )}
+          setCurrentItemState={setCurrentItemState}
+          placeholder={"Select Item "}
+        />
+        <Label htmlFor="Price">Price</Label>
+        <Input
+          id="Price"
+          placeholder="1200"
+          onChange={(e) => setPriceState(Number(e.target.value))}
+        />
+        <Label htmlFor="Number">Number</Label>
+        <Input
+          id="Number"
+          placeholder="10"
+          onChange={(e) => setNumberState(Number(e.target.value))}
+        />
+        <Label htmlFor="Image">Image</Label>
+        <Input
+          id="Image"
+          type={"file"}
+          accept=".png,.jpg"
+          onChange={(e) => {
+            e.target.files && setFileState(e.target.files[0]);
+          }}
+        />
+        {disableStorageColor && (
           <DropDownMenu
-            collectionsData={collections}
-            setCurrentItemState={setCollectionState}
-            placeholder={collectionPlaceHolder}
+            collectionsData={Phones[currentItemState]["storage options"] || ""}
+            setCurrentItemState={setStorageState}
+            placeholder={"Select Storage"}
           />
+        )}
+        {disableStorageColor && (
           <DropDownMenu
-            collectionsData={Object.keys(
-              collectionsMap[collectionState as keyof typeof collectionsMap]
-            )}
-            setCurrentItemState={setCurrentItemState}
-            placeholder={"Select Item "}
+            collectionsData={Phones[currentItemState]["colors"] || ""}
+            setCurrentItemState={setColorState}
+            placeholder={"Select Color"}
           />
-          <Label htmlFor="Price">Price</Label>
-          <Input
-            id="Price"
-            placeholder="1200"
-            onChange={(e) => setPriceState(Number(e.target.value))}
-          />
-          <Label htmlFor="Number">Number</Label>
-          <Input
-            id="Number"
-            placeholder="10"
-            onChange={(e) => setNumberState(Number(e.target.value))}
-          />
-          <Label htmlFor="Image">Image</Label>
-          <Input
-            id="Image"
-            type={"file"}
-            accept=".png,.jpg"
-            onChange={(e) => {
-              e.target.files && setFileState(e.target.files[0]);
+        )}
+        <div className="full flex justify-center items-center my-4">
+          <Button
+            onClick={async (e) => {
+              e.preventDefault();
+              createItem({
+                file: fileState,
+                collection: collectionState,
+                nameID: currentItemState,
+                priceState: priceState,
+                numberState: numberState,
+                storageState: storageState,
+                colorState: colorState,
+              });
             }}
-          />
-          {disableStorageColor && (
-            <DropDownMenu
-              collectionsData={
-                Phones[currentItemState]["storage options"] || ""
-              }
-              setCurrentItemState={setStorageState}
-              placeholder={"Select Storage"}
-            />
-          )}
-          {disableStorageColor && (
-            <DropDownMenu
-              collectionsData={Phones[currentItemState]["colors"] || ""}
-              setCurrentItemState={setColorState}
-              placeholder={"Select Color"}
-            />
-          )}
-          <div className="full flex justify-center items-center my-4">
-            <Button
-              onClick={async (e) => {
-                e.preventDefault();
-                createItem({
-                  file: fileState,
-                  collection: collectionState,
-                  nameID: currentItemState,
-                  priceState: priceState,
-                  numberState: numberState,
-                  storageState: storageState,
-                  colorState: colorState,
-                });
-              }}
-            >
-              Create
-            </Button>
-          </div>
+          >
+            Create
+          </Button>
         </div>
       </div>
+    </div>
   );
 }
